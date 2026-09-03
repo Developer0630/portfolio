@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio cá nhân - Backend Developer" />
+  <title>Nhat Hieu | Backend Developer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            },
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+  <!-- Navigation -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo -->
+        <a href="#hero" class="font-display font-bold text-xl tracking-tight">
+          <span class="text-primary-600 dark:text-primary-400">Nhat Hieu</span>
+          <span class="text-slate-800 dark:text-white">.</span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+          <li><a href="#projects" class="nav-link">Dự án</a></li>
+          <li><a href="#contact" class="nav-link">Liên hệ</a></li>
+        </ul>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+          <button id="theme-toggle" type="button" aria-label="Chuyển đổi chế độ sáng/tối"
+            class="p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+            <svg id="icon-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+            </svg>
+            <svg id="icon-moon" class="w-5 h-5 block dark:hidden text-slate-600" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg>
+          </button>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" type="button" aria-label="Mở menu" aria-expanded="false"
+            class="md:hidden p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+            <svg id="icon-menu" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <ul class="flex flex-col gap-2 text-sm font-medium">
+          <li><a href="#about" class="mobile-nav-link block px-4 py-3 rounded-xl hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors">Giới thiệu</a></li>
+          <li><a href="#projects" class="mobile-nav-link block px-4 py-3 rounded-xl hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors">Dự án</a></li>
+          <li><a href="#contact" class="mobile-nav-link block px-4 py-3 rounded-xl hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-colors">Liên hệ</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <!-- Background decorations -->
+      <div class="absolute inset-0 -z-10">
+        <div class="absolute top-1/4 -left-32 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.03\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <!-- Text Content -->
+          <div class="order-2 lg:order-1 text-center lg:text-left">
+            <p class="reveal-up text-primary-600 dark:text-primary-400 font-medium mb-4 tracking-wide">
+              Xin chào, tôi là
+            </p>
+            <h1 class="reveal-up font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6" style="--delay: 100ms">
+              Phan Văn Nhật
+              <span class="gradient-text block sm:inline">Hiếu</span>
+            </h1>
+            <p class="reveal-up text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto lg:mx-0" style="--delay: 200ms">
+              Backend Developer  — xây dựng sản phẩm số đẹp mắt, hiệu năng cao và trải nghiệm người dùng tuyệt vời.
+            </p>
+            <div class="reveal-up flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" style="--delay: 300ms">
+              <a href="#projects" class="btn-primary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                Xem dự án
+              </a>
+              <a href="#contact" class="btn-secondary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Liên hệ
+              </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="reveal-up grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-slate-200 dark:border-slate-800" style="--delay: 400ms">
+              <div>
+                <p class="font-display text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">3+</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Năm kinh nghiệm</p>
+              </div>
+              <div>
+                <p class="font-display text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">20+</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Dự án hoàn thành</p>
+              </div>
+              <div>
+                <p class="font-display text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400">15+</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Khách hàng</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Avatar -->
+          <div class="order-1 lg:order-2 flex justify-center">
+            <div class="reveal-up relative" style="--delay: 200ms">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary-500 to-violet-600 rounded-3xl rotate-6 scale-105 opacity-20 blur-sm"></div>
+              <div class="relative w-56 h-80 sm:w-72 sm:h-[28rem] lg:w-80 lg:h-[32rem] rounded-3xl overflow-hidden shadow-2xl shadow-primary-500/20 ring-4 ring-white/20 dark:ring-slate-800/50 animate-float">
+                <img
+                  src="assets/avatar.png"
+                  alt="Ảnh đại diện - Phan Văn Nhật Hiếu"
+                  class="w-full h-full object-cover object-top"
+                  loading="eager"
+                />
+              </div>
+              <!-- Floating badge -->
+              <div class="absolute -bottom-4 -left-4 sm:-left-8 bg-white dark:bg-slate-800 px-4 py-3 rounded-2xl shadow-lg flex items-center gap-3">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <span class="text-sm font-medium">Sẵn sàng nhận việc</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hover:text-primary-500 transition-colors animate-bounce" aria-label="Cuộn xuống">
+        <span class="text-xs font-medium">Khám phá</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p class="reveal-up text-primary-600 dark:text-primary-400 font-medium mb-3">Về tôi</p>
+          <h2 class="reveal-up font-display text-3xl sm:text-4xl font-bold" style="--delay: 100ms">Giới thiệu bản thân</h2>
+          <div class="reveal-up w-20 h-1 bg-gradient-to-r from-primary-500 to-violet-500 mx-auto mt-4 rounded-full" style="--delay: 200ms"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-12 items-start">
+          <div class="lg:col-span-3 reveal-up">
+            <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+              Tôi là một <strong class="text-slate-800 dark:text-white">Backend Developer</strong> với đam mê thiết kế giao diện. Tôi kết hợp tư duy kỹ thuật vững chắc với khả năng thẩm mỹ để tạo ra những sản phẩm web hoàn chỉnh — từ ý tưởng, thiết kế UI/UX đến triển khai production.
+            </p>
+            <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+              Trong suốt hành trình phát triển, tôi đã làm việc với các startup và doanh nghiệp vừa, giúp họ xây dựng ứng dụng web, API backend, và hệ thống quản trị nội dung. Tôi luôn ưu tiên code sạch, hiệu năng tối ưu và trải nghiệm người dùng mượt mà trên mọi thiết bị.
+            </p>
+            <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+              Hiện tại tôi đang tìm kiếm cơ hội hợp tác trên các dự án thú vị — dù là freelance hay full-time. Hãy cùng tạo nên điều gì đó tuyệt vời!
+            </p>
+          </div>
+
+          <div class="lg:col-span-2 reveal-up" style="--delay: 150ms">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800">
+              <h3 class="font-display font-semibold text-lg mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Thông tin nhanh
+              </h3>
+              <ul class="space-y-3 text-sm">
+                <li class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500">Vị trí</span>
+                  <span class="font-medium">Backend Developer</span>
+                </li>
+                <li class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500">Địa điểm</span>
+                  <span class="font-medium">Đà Nẵng, Việt Nam</span>
+                </li>
+                <li class="flex justify-between py-2 border-b border-slate-100 dark:border-slate-800">
+                  <span class="text-slate-500">Ngôn ngữ</span>
+                  <span class="font-medium">Tiếng Việt, English</span>
+                </li>
+                <li class="flex justify-between py-2">
+                  <span class="text-slate-500">Trạng thái</span>
+                  <span class="font-medium text-green-600 dark:text-green-400">Đang tìm việc</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="mt-16">
+          <h3 class="reveal-up font-display text-xl font-semibold text-center mb-8">Kỹ năng chính</h3>
+          <div class="reveal-up flex flex-wrap justify-center gap-3" style="--delay: 100ms">
+            <span class="skill-badge">JavaScript / TypeScript</span>
+            <span class="skill-badge">React / Next.js</span>
+            <span class="skill-badge">Node.js / Express</span>
+            <span class="skill-badge">Python / Django</span>
+            <span class="skill-badge">PostgreSQL / MongoDB</span>
+            <span class="skill-badge">Tailwind CSS</span>
+            <span class="skill-badge">Figma / UI Design</span>
+            <span class="skill-badge">Git / Docker</span>
+            <span class="skill-badge">REST API / GraphQL</span>
+            <span class="skill-badge">AWS / Vercel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 md:py-28 bg-slate-100/50 dark:bg-slate-900/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p class="reveal-up text-primary-600 dark:text-primary-400 font-medium mb-3">Portfolio</p>
+          <h2 class="reveal-up font-display text-3xl sm:text-4xl font-bold" style="--delay: 100ms">Dự án tiêu biểu</h2>
+          <div class="reveal-up w-20 h-1 bg-gradient-to-r from-primary-500 to-violet-500 mx-auto mt-4 rounded-full" style="--delay: 200ms"></div>
+          <p class="reveal-up text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto" style="--delay: 300ms">
+            Một số dự án tôi đã tham gia phát triển — từ ý tưởng đến sản phẩm hoàn chỉnh.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <article class="reveal-up project-card group">
+            <div class="relative overflow-hidden rounded-t-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+                alt="E-Commerce Dashboard"
+                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div class="p-6 bg-white dark:bg-slate-900 rounded-b-2xl border border-t-0 border-slate-200 dark:border-slate-800">
+              <h3 class="font-display text-xl font-semibold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                E-Commerce Dashboard
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                Hệ thống quản trị bán hàng trực tuyến với dashboard thống kê real-time, quản lý đơn hàng và tích hợp thanh toán.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Stripe</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Demo
+                </a>
+                <a href="#" class="project-link project-link-secondary" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="reveal-up project-card group" style="--delay: 100ms">
+            <div class="relative overflow-hidden rounded-t-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+                alt="Task Management App"
+                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div class="p-6 bg-white dark:bg-slate-900 rounded-b-2xl border border-t-0 border-slate-200 dark:border-slate-800">
+              <h3 class="font-display text-xl font-semibold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                TaskFlow — Quản lý công việc
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                Ứng dụng quản lý dự án kiểu Kanban với drag-and-drop, thông báo real-time và cộng tác nhóm đa người dùng.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Prisma</span>
+                <span class="tech-tag">Socket.io</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Demo
+                </a>
+                <a href="#" class="project-link project-link-secondary" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="reveal-up project-card group md:col-span-2 lg:col-span-1" style="--delay: 200ms">
+            <div class="relative overflow-hidden rounded-t-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop"
+                alt="AI Content Generator"
+                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div class="p-6 bg-white dark:bg-slate-900 rounded-b-2xl border border-t-0 border-slate-200 dark:border-slate-800">
+              <h3 class="font-display text-xl font-semibold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                AI Content Studio
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                Nền tảng tạo nội dung marketing bằng AI — viết blog, caption mạng xã hội và email tự động với giao diện trực quan.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span class="tech-tag">Vue.js</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">OpenAI</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Demo
+                </a>
+                <a href="#" class="project-link project-link-secondary" target="_blank" rel="noopener noreferrer">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                  </svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p class="reveal-up text-primary-600 dark:text-primary-400 font-medium mb-3">Liên hệ</p>
+          <h2 class="reveal-up font-display text-3xl sm:text-4xl font-bold" style="--delay: 100ms">Hãy cùng làm việc</h2>
+          <div class="reveal-up w-20 h-1 bg-gradient-to-r from-primary-500 to-violet-500 mx-auto mt-4 rounded-full" style="--delay: 200ms"></div>
+          <p class="reveal-up text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto" style="--delay: 300ms">
+            Bạn có dự án thú vị? Hãy gửi tin nhắn — tôi sẽ phản hồi trong vòng 24 giờ.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-12">
+          <!-- Contact Form -->
+          <div class="lg:col-span-3 reveal-up">
+            <form id="contact-form" class="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-lg shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800" novalidate>
+              <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label for="name" class="form-label">Họ và tên</label>
+                  <input type="text" id="name" name="name" required placeholder="Nguyễn Văn A" class="form-input" />
+                </div>
+                <div>
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" name="email" required placeholder="email@example.com" class="form-input" />
+                </div>
+              </div>
+              <div class="mb-6">
+                <label for="subject" class="form-label">Chủ đề</label>
+                <input type="text" id="subject" name="subject" required placeholder="Dự án website thương mại điện tử" class="form-input" />
+              </div>
+              <div class="mb-6">
+                <label for="message" class="form-label">Nội dung</label>
+                <textarea id="message" name="message" required rows="5" placeholder="Mô tả dự án của bạn..." class="form-input resize-none"></textarea>
+              </div>
+              <button type="submit" class="btn-primary w-full sm:w-auto">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+                Gửi tin nhắn
+              </button>
+              <p id="form-success" class="hidden mt-4 text-sm text-green-600 dark:text-green-400 font-medium">
+                Cảm ơn bạn! Tin nhắn đã được gửi thành công. (Demo — chưa kết nối backend)
+              </p>
+            </form>
+          </div>
+
+          <!-- Social Links & Info -->
+          <div class="lg:col-span-2 reveal-up" style="--delay: 150ms">
+            <div class="space-y-6">
+              <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
+                <h3 class="font-display font-semibold text-lg mb-4">Kết nối với tôi</h3>
+                <div class="space-y-4">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <span class="social-icon bg-slate-800 dark:bg-slate-700">
+                      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="font-medium">GitHub</p>
+                      <p class="text-sm text-slate-500">https://github.com/Developer0630</p>
+                    </div>
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <span class="social-icon bg-blue-600">
+                      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="font-medium">LinkedIn</p>
+                      <p class="text-sm text-slate-500">www.linkedin.com/in/phan-văn-nhật-hiếu-79ba34329</p>
+                    </div>
+                  </a>
+                  <a href="mailto:nyzora.dev.2168@gmail.com" class="social-link">
+                    <span class="social-icon bg-primary-600">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="font-medium">Email</p>
+                      <p class="text-sm text-slate-500">nyzora.dev.2168@gmail.com</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-br from-primary-500 to-violet-600 rounded-2xl p-6 text-white">
+                <h3 class="font-display font-semibold text-lg mb-2">Bạn cần hỗ trợ gấp?</h3>
+                <p class="text-primary-100 text-sm mb-4">
+                  Gửi email trực tiếp để được phản hồi nhanh nhất.
+                </p>
+                <a href="mailto:minhhieu@email.com" class="inline-flex items-center gap-2 text-sm font-medium bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  nyzora.dev.2168@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <p>&copy; 2026 Phan Văn Nhật Hiếu. All rights reserved.</p>
+        <p class="flex items-center gap-1">
+          Made with
+          <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+          </svg>
+          using HTML, Tailwind & JS
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
